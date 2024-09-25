@@ -47,13 +47,13 @@ for index, row in enumerate(nouvelle_collection):
 
 # TODO : Écrire votre code ici
 
-S_cote = []
+SW_cote = []
 
 for cote in bibliotheque:
     if cote[0] == "S" and bibliotheque[cote]["auteur"] == "William Shakespeare":
-        S_cote.append(cote)
+        SW_cote.append(cote)
 
-for cote in S_cote:
+for cote in SW_cote:
     nouvelle_cote = "WS" + cote[1:]
     bibliotheque[nouvelle_cote] = bibliotheque[cote]
     del bibliotheque[cote]
@@ -66,11 +66,30 @@ print(f' \n Bibliotheque avec modifications de cote : {bibliotheque} \n')
 
 # TODO : Écrire votre code ici
 
+emprunts_file = open("emprunts.csv", newline="")
+emprunts = csv.reader(emprunts_file)
 
+a = [1,2,3]
+b= [4,5,6]
 
+for i in bibliotheque:
+    for j in emprunts:
+        print(i,j)
+    print(i)
 
+"""for cote in bibliotheque:
+    for emprunt in emprunts:
+        print("oefe")
+        if emprunt[0] == "E004":
+            print("ok")
+        if cote == emprunt[0]:
+            print("Test")
+            bibliotheque[cote]["emprunts"] = "emprunté"
+            break
+    else:
+        bibliotheque[cote]["emprunts"] = "disponible"""
 
-
+#print(bibliotheque)
 
 ########################################################################################################## 
 # PARTIE 5 : Livres en retard 
