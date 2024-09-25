@@ -69,15 +69,21 @@ print(f' \n Bibliotheque avec modifications de cote : {bibliotheque} \n')
 emprunts_file = open("emprunts.csv", newline="")
 emprunts = csv.reader(emprunts_file)
 
+liste_emprunts = []
+for emprunt in emprunts:
+    liste_emprunts.append(emprunt)
+
 for cote in bibliotheque:
-    for emprunt in emprunts:
+    for emprunt in liste_emprunts:
         if cote == emprunt[0]:
             bibliotheque[cote]["emprunts"] = "emprunté"
+            bibliotheque[cote]["date_emprunt"] = emprunt[1]
             break
     else:
         bibliotheque[cote]["emprunts"] = "disponible"
+        bibliotheque[cote]["date_emprunt"] = None
 
-#print(bibliotheque)
+print(bibliotheque)
 
 ########################################################################################################## 
 # PARTIE 5 : Livres en retard 
