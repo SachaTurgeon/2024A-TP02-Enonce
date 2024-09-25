@@ -69,25 +69,13 @@ print(f' \n Bibliotheque avec modifications de cote : {bibliotheque} \n')
 emprunts_file = open("emprunts.csv", newline="")
 emprunts = csv.reader(emprunts_file)
 
-a = [1,2,3]
-b= [4,5,6]
-
-for i in bibliotheque:
-    for j in emprunts:
-        print(i,j)
-    print(i)
-
-"""for cote in bibliotheque:
+for cote in bibliotheque:
     for emprunt in emprunts:
-        print("oefe")
-        if emprunt[0] == "E004":
-            print("ok")
         if cote == emprunt[0]:
-            print("Test")
             bibliotheque[cote]["emprunts"] = "emprunté"
             break
     else:
-        bibliotheque[cote]["emprunts"] = "disponible"""
+        bibliotheque[cote]["emprunts"] = "disponible"
 
 #print(bibliotheque)
 
