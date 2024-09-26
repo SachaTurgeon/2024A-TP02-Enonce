@@ -1,9 +1,9 @@
 """
 TP2 : Système de gestion de livres pour une bibliothèque
 
-Groupe de laboratoire : XX
-Numéro d'équipe :  YY
-Noms et matricules : Nom1 (Matricule1), Nom2 (Matricule2)
+Groupe de laboratoire : 01
+Numéro d'équipe :  21
+Noms et matricules : Sacha Turgeon (2373772), Nom2 (Matricule2)
 """
 
 ########################################################################################################## 
