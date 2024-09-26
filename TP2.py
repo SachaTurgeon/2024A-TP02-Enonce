@@ -98,28 +98,20 @@ for cote in bibliotheque:
         if cote == emprunt[0]:
             date = emprunt[1].split("-")
             retard = datetime.date.today() - datetime.date(int(date[0]), int(date[1]), int(date[2]))
-            frais = 0
             if retard > datetime.timedelta(days = 365):
                 bibliotheque[cote]["frais_retard"] = 100
                 bibliotheque[cote]["livres_perdus"] = True
                 print(f"{cote} est en retard avec un frais de 100$")
                 break
             elif retard > datetime.timedelta(days = 30):
-                frais += (retard.days - 30) * 2
-                if frais <= 100:
-                    bibliotheque[cote]["frais_retard"] = frais
-                    bibliotheque[cote]["livres_perdus"] = False
-                    print(f"{cote} est en retard avec un frais de {frais}$")
-                    break
-                else:
-                    bibliotheque[cote]["frais_retard"] = 100
-                    bibliotheque[cote]["livres_perdus"] = False
-                    print(f"{cote} est en retard avec un frais de 100$")
-                    break
+                frais = min((retard.days - 30) * 2, 100)
+                #frais = ((retard.days - 30) * 2) if ((retard.days - 30) * 2) <= 100 else 100
+                bibliotheque[cote]["frais_retard"] = frais
+                print(f"{cote} est en retard avec un frais de {frais}$")
             else:
                 bibliotheque[cote]["frais_retard"] = 0
-                bibliotheque[cote]["livres_perdus"] = False
-                break
+            bibliotheque[cote]["livres_perdus"] = False
+            break
     else:
         bibliotheque[cote]["frais_retard"] = None
         bibliotheque[cote]["livres_perdus"] = False
