@@ -98,18 +98,13 @@ for cote in bibliotheque:
         if cote == emprunt[0]:
             date = [int(i) for i in emprunt[1].split("-")]
             retard = datetime.date.today() - datetime.date(date[0], date[1], date[2])
-            if retard > datetime.timedelta(days = 365):
-                frais = 100
-                perdu = True
-            elif retard > datetime.timedelta(days = 30):
+            if retard > datetime.timedelta(days = 30):
                 frais = min((retard.days - 30) * 2, 100)
-                #frais = ((retard.days - 30) * 2) if ((retard.days - 30) * 2) <= 100 else 100
-                perdu = False
+                perdu = False if retard <= datetime.timedelta(days = 365) else True
+                print(f"{cote} est en retard avec un frais de {frais}$")
             else:
                 frais = 0
                 perdu = False
-                break
-            print(f"{cote} est en retard avec un frais de {frais}$")
             break
     else:
         frais = None
