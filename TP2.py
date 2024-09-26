@@ -101,21 +101,20 @@ for cote in bibliotheque:
             if retard > datetime.timedelta(days = 365):
                 frais = 100
                 perdu = True
-                print(f"{cote} est en retard avec un frais de 100$")
-                break
             elif retard > datetime.timedelta(days = 30):
                 frais = min((retard.days - 30) * 2, 100)
                 #frais = ((retard.days - 30) * 2) if ((retard.days - 30) * 2) <= 100 else 100
                 perdu = False
-                print(f"{cote} est en retard avec un frais de {frais}$")
             else:
                 frais = 0
                 perdu = False
-            bibliotheque[cote]["frais_retard"] = frais
-            bibliotheque[cote]["livres_perdus"] = perdu
+                break
+            print(f"{cote} est en retard avec un frais de {frais}$")
             break
     else:
-        bibliotheque[cote]["frais_retard"] = None
-        bibliotheque[cote]["livres_perdus"] = False
+        frais = None
+        perdu = False
+    bibliotheque[cote]["frais_retard"] = frais
+    bibliotheque[cote]["livres_perdus"] = perdu
 
 print(f' \n Bibliotheque avec ajout des retards et frais : {bibliotheque} \n')
