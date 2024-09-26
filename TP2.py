@@ -83,7 +83,7 @@ for cote in bibliotheque:
         bibliotheque[cote]["emprunts"] = "disponible"
         bibliotheque[cote]["date_emprunt"] = None
 
-print(bibliotheque)
+print(f' \n Bibliotheque avec ajout des emprunts : {bibliotheque} \n')
 
 ########################################################################################################## 
 # PARTIE 5 : Livres en retard 
@@ -91,8 +91,37 @@ print(bibliotheque)
 
 # TODO : Écrire votre code ici
 
+import datetime
 
+for cote in bibliotheque:
+    for emprunt in liste_emprunts:
+        if cote == emprunt[0]:
+            date = emprunt[1].split("-")
+            retard = datetime.date.today() - datetime.date(int(date[0]), int(date[1]), int(date[2]))
+            frais = 0
+            if retard > datetime.timedelta(days = 365):
+                bibliotheque[cote]["frais_retard"] = 100
+                bibliotheque[cote]["livres_perdus"] = True
+                print(f"{cote} est en retard avec un frais de 100$")
+                break
+            elif retard > datetime.timedelta(days = 30):
+                frais += (retard.days - 30) * 2
+                if frais <= 100:
+                    bibliotheque[cote]["frais_retard"] = frais
+                    bibliotheque[cote]["livres_perdus"] = False
+                    print(f"{cote} est en retard avec un frais de {frais}$")
+                    break
+                else:
+                    bibliotheque[cote]["frais_retard"] = 100
+                    bibliotheque[cote]["livres_perdus"] = False
+                    print(f"{cote} est en retard avec un frais de 100$")
+                    break
+            else:
+                bibliotheque[cote]["frais_retard"] = 0
+                bibliotheque[cote]["livres_perdus"] = False
+                break
+    else:
+        bibliotheque[cote]["frais_retard"] = None
+        bibliotheque[cote]["livres_perdus"] = False
 
-
-
-
+print(f' \n Bibliotheque avec ajout des retards et frais : {bibliotheque} \n')
