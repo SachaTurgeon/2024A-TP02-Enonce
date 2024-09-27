@@ -70,8 +70,9 @@ emprunts_file = open("emprunts.csv", newline="")
 emprunts = csv.reader(emprunts_file)
 
 liste_emprunts = []
-for emprunt in emprunts:
-    liste_emprunts.append(emprunt)
+for index, emprunt in enumerate(emprunts):
+    if index != 0:
+        liste_emprunts.append(emprunt)
 
 for cote in bibliotheque:
     for emprunt in liste_emprunts:
