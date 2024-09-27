@@ -77,12 +77,14 @@ for index, emprunt in enumerate(emprunts):
 for cote in bibliotheque:
     for emprunt in liste_emprunts:
         if cote == emprunt[0]:
-            bibliotheque[cote]["emprunts"] = "emprunté"
-            bibliotheque[cote]["date_emprunt"] = emprunt[1]
+            disponibilite = "emprunté"
+            date_emprunt = emprunt[1]
             break
     else:
-        bibliotheque[cote]["emprunts"] = "disponible"
-        bibliotheque[cote]["date_emprunt"] = None
+        disponibilite = "disponible"
+        date_emprunt = None
+    bibliotheque[cote]["emprunts"] = disponibilite
+    bibliotheque[cote]["date_emprunt"] = date_emprunt
 
 print(f' \n Bibliotheque avec ajout des emprunts : {bibliotheque} \n')
 
