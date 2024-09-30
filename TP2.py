@@ -97,18 +97,16 @@ print(f' \n Bibliotheque avec ajout des emprunts : {bibliotheque} \n')
 import datetime
 
 for cote in bibliotheque:
-    for emprunt in liste_emprunts:
-        if cote == emprunt[0]:
-            date = [int(i) for i in emprunt[1].split("-")]
-            retard = datetime.date.today() - datetime.date(date[0], date[1], date[2])
-            if retard > datetime.timedelta(days = 30):
-                frais = min((retard.days - 30) * 2, 100)
-                perdu = False if retard <= datetime.timedelta(days = 365) else True
-                print(f"{cote} est en retard avec un frais de {frais}$")
-            else:
-                frais = 0
-                perdu = False
-            break
+    if bibliotheque[cote]["emprunts"] == "emprunté":
+        date = [int(i) for i in emprunt[1].split("-")]
+        retard = datetime.date.today() - datetime.date(date[0], date[1], date[2])
+        if retard > datetime.timedelta(days = 30):
+            frais = min((retard.days - 30) * 2, 100)
+            perdu = False if retard <= datetime.timedelta(days = 365) else True
+            print(f"{cote} est en retard avec un frais de {frais}$")
+        else:
+            frais = 0
+            perdu = False
     else:
         frais = None
         perdu = False
