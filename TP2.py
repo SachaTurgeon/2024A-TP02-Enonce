@@ -54,7 +54,7 @@ for cote in bibliotheque:
         SW_cote.append(cote)
 
 for cote in SW_cote:
-    nouvelle_cote = "WS" + cote[1:]
+    nouvelle_cote = "W" + cote
     bibliotheque[nouvelle_cote] = bibliotheque[cote]
     del bibliotheque[cote]
 
