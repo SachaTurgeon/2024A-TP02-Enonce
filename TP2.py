@@ -69,22 +69,12 @@ print(f' \n Bibliotheque avec modifications de cote : {bibliotheque} \n')
 emprunts_file = open("emprunts.csv", newline="")
 emprunts = csv.reader(emprunts_file)
 
-liste_emprunts = []
-for index, emprunt in enumerate(emprunts):
-    if index != 0:
-        liste_emprunts.append(emprunt)
-
 for cote in bibliotheque:
-    for emprunt in liste_emprunts:
-        if cote == emprunt[0]:
-            disponibilite = "emprunté"
-            date_emprunt = emprunt[1]
-            break
-    else:
-        disponibilite = "disponible"
-        date_emprunt = None
-    bibliotheque[cote]["emprunts"] = disponibilite
-    bibliotheque[cote]["date_emprunt"] = date_emprunt
+    bibliotheque[cote]["emprunts"] = "disponible"
+for index, row in enumerate(emprunts):
+    if index != 0:
+        bibliotheque[row[0]]["emprunts"] = "emprunté"
+        bibliotheque[row[0]]["date_emprunt"] = row[1]
 
 print(f' \n Bibliotheque avec ajout des emprunts : {bibliotheque} \n')
 
@@ -98,7 +88,7 @@ import datetime
 
 for cote in bibliotheque:
     if bibliotheque[cote]["emprunts"] == "emprunté":
-        date = [int(i) for i in emprunt[1].split("-")]
+        date = [int(i) for i in bibliotheque[cote]["date_emprunt"].split("-")]
         retard = datetime.date.today() - datetime.date(date[0], date[1], date[2])
         if retard > datetime.timedelta(days = 30):
             frais = min((retard.days - 30) * 2, 100)

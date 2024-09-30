@@ -72,7 +72,7 @@ for cote in bibliotheque:
         nbJoursEmprunt=(datetime.date.today()-dateEmprunt).days
         if(nbJoursEmprunt>30):
             bibliotheque[cote]["frais-retard"]=f"{min(100,(nbJoursEmprunt-30)*2)}$"
-            print(f"Le livre {cote} ---- {bibliotheque[cote]["titre"]} par {bibliotheque[cote]["auteur"]} ---- est en retard. Frais de retard : {bibliotheque[cote]["frais-retard"]}")
+            print(f"Le livre {cote} ---- {bibliotheque[cote]['titre']} par {bibliotheque[cote]['auteur']} ---- est en retard. Frais de retard : {bibliotheque[cote]['frais-retard']}")
             if(nbJoursEmprunt>=365):
                 bibliotheque[cote]["livre_perdus"]="livre_perdu"
 print(f' \n Bibliotheque avec ajout des retards et frais : {bibliotheque} \n')
